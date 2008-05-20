@@ -33,7 +33,7 @@ class Intraface_Filehandler_Controller_Upload extends k_Controller
         $filemanager->createUpload();
 
         $filemanager->upload->setSetting('file_accessibility', $this->POST['accessibility']);
-        $filemanager->upload->setSetting('max_file_size', '1000000');
+        $filemanager->upload->setSetting('max_file_size', '10000000');
         $filemanager->upload->setSetting('add_keyword', $this->POST['keyword']);
         if($id = $filemanager->upload->upload('userfile')) {
             $location = $redirect->getRedirect($this->context->url($id));
