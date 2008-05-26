@@ -39,7 +39,7 @@ class Intraface_Filehandler_Controller_Upload extends k_Controller
             $location = $redirect->getRedirect($this->context->url($id));
             throw new k_http_Redirect($location);
         }
+
+        return '<h1>'.$this->__('Errors occured').'</h1>' . $filemanager->error->view() . '<p>'.$this->__('Go back').'</p>';
     }
-
 }
-
