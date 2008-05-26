@@ -92,7 +92,7 @@
         for($i = 0, $max = count($files); $i < $max; $i++) {
             ?>
             <tr>
-                <td style="height: 67px;"><a href="<?php print($files[$i]['file_uri']); ?>"><img src="<?php print($files[$i]["icon_uri"]); ?>" style="height: <?php e($files[$i]["icon_height"]); ?>px; width: <?php e($files[$i]["icon_width"]); ?>px;" /></a></td>
+                <td style="height: 67px;"><a href="<?php e($files[$i]['file_uri']); ?>"><img src="<?php e($files[$i]["icon_uri"]); ?>" style="height: <?php e($files[$i]["icon_height"]); ?>px; width: <?php e($files[$i]["icon_width"]); ?>px;" /></a></td>
                 <td><a href="<?php e(url($files[$i]["id"])); ?>"><?php e($files[$i]["file_name"]); ?></a>
                     <br /><i><?php e(substr(strip_tags($files[$i]["description"]), 0, 100)); if(strlen(strip_tags($files[$i]["description"])) > 100) print('...'); ?></i>
                 </td>
