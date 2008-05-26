@@ -40,6 +40,6 @@ class Intraface_Filehandler_Controller_Upload extends k_Controller
             throw new k_http_Redirect($location);
         }
 
-        return '<h1>'.$this->__('Errors occured').'</h1>' . $filemanager->error->view() . '<p>'.$this->__('Go back').'</p>';
+        return '<h1>'.$this->__('Errors occured').'</h1>' . $filemanager->error->view() . '<p><a href="'.$this->url(null).'">'.$this->__('Go back').'</a></p>';
     }
 }
