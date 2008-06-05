@@ -81,7 +81,6 @@ class Intraface_Filehandler_Controller_Crop extends k_Controller
         $filemanager = new Ilib_Filehandler_Manager($kernel, $this->context->name);
         $instance_type = $this->POST['instance_type'];
 
-        require_once 'Ilib/Validator.php';
         $validator = new Ilib_Validator($filemanager->error);
         //$validator->isNumeric((int)$this->POST['width'], 'invalid width', 'greater_than_zero,integer');
         //$validator->isNumeric((int)$this->POST['height'], 'invalid width', 'greater_than_zero,integer');
