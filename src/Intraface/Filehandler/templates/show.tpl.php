@@ -15,15 +15,15 @@
         <tbody>
         <tr>
             <th><?php e(__('file name')); ?></th>
-            <td><?php echo safeToHtml($filemanager->get('file_name')); ?></td>
+            <td><?php e($filemanager->get('file_name')); ?></td>
         </tr>
         <tr>
             <th><?php e(__('created', 'common')); ?></th>
-            <td><?php print($filemanager->get("dk_date_created")); ?></td>
+            <td><?php e($filemanager->get("dk_date_created")); ?></td>
         </tr>
         <tr>
             <th><?php e(__('file size')); ?></th>
-            <td><?php print($filemanager->get("dk_file_size")); ?></td>
+            <td><?php e($filemanager->get("dk_file_size")); ?></td>
         </tr>
         <tr>
             <th><?php e(__('file type')); ?></th>
@@ -93,10 +93,10 @@
                         <td>
                             <?php
                             if(is_numeric($instance['file_size'])) {
-                                print(number_format($instance['file_size']/1000, 2, ",", ".")." Kb");
+                                e(number_format($instance['file_size']/1000, 2, ",", ".")." Kb");
                             }
                             else {
-                                print('-');
+                                e('-');
                             }
                             ?>
                         </td>

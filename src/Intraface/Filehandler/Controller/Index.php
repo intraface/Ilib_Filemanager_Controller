@@ -21,40 +21,38 @@ class Intraface_FileHandler_Controller_Index extends k_Controller
             $filemanager = new FileManager($kernel);
         }
 
-        $filemanager->createDBQuery();
-
         if(isset($this->GET['search'])) {
 
             if(isset($this->GET['text']) && $this->GET['text'] != '') {
-                $filemanager->dbquery->setFilter('text', $this->GET['text']);
+                $filemanager->getDBQuery()->setFilter('text', $this->GET['text']);
             }
 
             if(isset($this->GET['filtration']) && intval($this->GET['filtration']) != 0) {
-                $filemanager->dbquery->setFilter('filtration', $this->GET['filtration']);
+                $filemanager->getDBQuery()->setFilter('filtration', $this->GET['filtration']);
 
                 switch($this->GET['filtration']) {
                     case 1:
-                        $filemanager->dbquery->setFilter('uploaded_from_date', date('d-m-Y').' 00:00');
+                        $filemanager->getDBQuery()->setFilter('uploaded_from_date', date('d-m-Y').' 00:00');
                         break;
                     case 2:
-                        $filemanager->dbquery->setFilter('uploaded_from_date', date('d-m-Y', time()-60*60*24).' 00:00');
-                        $filemanager->dbquery->setFilter('uploaded_to_date', date('d-m-Y', time()-60*60*24).' 23:59');
+                        $filemanager->getDBQuery()->setFilter('uploaded_from_date', date('d-m-Y', time()-60*60*24).' 00:00');
+                        $filemanager->getDBQuery()->setFilter('uploaded_to_date', date('d-m-Y', time()-60*60*24).' 23:59');
                         break;
                     case 3:
-                        $filemanager->dbquery->setFilter('uploaded_from_date', date('d-m-Y', time()-60*60*24*7).' 00:00');
+                        $filemanager->getDBQuery()->setFilter('uploaded_from_date', date('d-m-Y', time()-60*60*24*7).' 00:00');
                         break;
                     case 4:
-                        $filemanager->dbquery->setFilter('edited_from_date', date('d-m-Y').' 00:00');
+                        $filemanager->getDBQuery()->setFilter('edited_from_date', date('d-m-Y').' 00:00');
                         break;
                     case 5:
-                        $filemanager->dbquery->setFilter('edited_from_date', date('d-m-Y', time()-60*60*24).' 00:00');
-                        $filemanager->dbquery->setFilter('edited_to_date', date('d-m-Y', time()-60*60*24).' 23:59');
+                        $filemanager->getDBQuery()->setFilter('edited_from_date', date('d-m-Y', time()-60*60*24).' 00:00');
+                        $filemanager->getDBQuery()->setFilter('edited_to_date', date('d-m-Y', time()-60*60*24).' 23:59');
                         break;
                     case 6:
-                        $filemanager->dbquery->setFilter('accessibility', 'public');
+                        $filemanager->getDBQuery()->setFilter('accessibility', 'public');
                         break;
                     case 7:
-                        $filemanager->dbquery->setFilter('accessibility', 'intranet');
+                        $filemanager->getDBQuery()->setFilter('accessibility', 'intranet');
                         break;
                     default:
                         // Probably 0, so nothing happens
@@ -63,18 +61,18 @@ class Intraface_FileHandler_Controller_Index extends k_Controller
             }
 
             if(isset($this->GET['keyword']) && is_array($this->GET['keyword']) && count($this->GET['keyword']) > 0) {
-                $filemanager->dbquery->setKeyword($this->GET['keyword']);
+                $filemanager->getDBQuery()->setKeyword($this->GET['keyword']);
             }
         } elseif(isset($this->GET['character'])) {
-            $filemanager->dbquery->useCharacter();
+            $filemanager->getDBQuery()->useCharacter();
         } else {
-            $filemanager->dbquery->setSorting('file_handler.date_created DESC');
+            $filemanager->getDBQuery()->setSorting('file_handler.date_created DESC');
         }
 
-        $filemanager->dbquery->defineCharacter('character', 'file_handler.file_name');
-        $filemanager->dbquery->usePaging('paging', $kernel->setting->get('user', 'rows_pr_page'));
-        $filemanager->dbquery->storeResult('use_stored', 'filemanager', 'toplevel');
-        $filemanager->dbquery->setUri($this->url());
+        $filemanager->getDBQuery()->defineCharacter('character', 'file_handler.file_name');
+        $filemanager->getDBQuery()->usePaging('paging', $kernel->setting->get('user', 'rows_pr_page'));
+        $filemanager->getDBQuery()->storeResult('use_stored', 'filemanager', 'toplevel');
+        $filemanager->getDBQuery()->setUri($this->url());
 
         $files = $filemanager->getList();
 

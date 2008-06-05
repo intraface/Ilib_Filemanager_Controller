@@ -32,7 +32,7 @@ class Intraface_Filehandler_Controller_Sizes_Edit extends k_Controller
             $value = $instance_manager->get();
         }
 
-        $this->document->title = $translation->get('edit instance type');
+        $this->document->title = $this->__('edit instance type');
 
         $data = array('instance_manager' => $instance_manager, 'value' => $value);
 

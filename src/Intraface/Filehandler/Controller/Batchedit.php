@@ -33,16 +33,15 @@ class Intraface_Filehandler_Controller_Batchedit extends k_Controller
 
 
         if (empty($this->GET['use_stored'])) {
-            trigger_error($translation->get('you cannot batch edit files with no save results'), E_USER_ERROR);
+            trigger_error($this->__('you cannot batch edit files with no save results'), E_USER_ERROR);
         }
 
         $filemanager = new FileManager($kernel);
-        $filemanager->createDBQuery();
-        $filemanager->dbquery->storeResult('use_stored', 'filemanager', 'toplevel');
+        $filemanager->getDBQuery()->storeResult('use_stored', 'filemanager', 'toplevel');
 
         $files = $filemanager->getList();
 
-        $this->document->title = $translation->get('files');
+        $this->document->title = $this->__('files');
 
         $data = array('filemanager' => $filemanager, 'files' => $files, 'kernel' => $kernel);
 

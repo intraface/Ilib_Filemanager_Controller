@@ -44,7 +44,7 @@ class Intraface_Filehandler_Controller_Crop extends k_Controller
             $unlock_ratio = 0;
         }
 
-        $this->document->title = $translation->get('crop image') . ' ' . $filemanager->get('file_name');
+        $this->document->title = $this->__('crop image') . ' ' . $filemanager->get('file_name');
         $this->document->scripts[] = $this->url('/scripts/cropper/lib/prototype.js');
         // @todo HACK only way I can get the link to be correct with a comma
         $this->document->scripts[] = $this->url('/scripts/cropper/lib/scriptaculous.js') . '?load=builder,dragdrop';
