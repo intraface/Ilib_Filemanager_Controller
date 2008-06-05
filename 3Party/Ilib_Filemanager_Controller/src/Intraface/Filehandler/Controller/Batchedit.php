@@ -9,7 +9,7 @@ class Intraface_Filehandler_Controller_Batchedit extends k_Controller
         $translation = $kernel->getTranslation('filemanager');
 
         foreach ($this->POST['description'] AS $key=>$value) {
-            $filemanager = new FileManager($kernel, $key);
+            $filemanager = new Ilib_Filehandler_Manager($kernel, $key);
             if ($filemanager->update(array(
                 'description' => $this->POST['description'][$key],
                 'accessibility' => $this->POST['accessibility'][$key]
@@ -36,7 +36,7 @@ class Intraface_Filehandler_Controller_Batchedit extends k_Controller
             trigger_error($this->__('you cannot batch edit files with no save results'), E_USER_ERROR);
         }
 
-        $filemanager = new FileManager($kernel);
+        $filemanager = new Ilib_Filehandler_Manager($kernel);
         $filemanager->getDBQuery()->storeResult('use_stored', 'filemanager', 'toplevel');
 
         $files = $filemanager->getList();

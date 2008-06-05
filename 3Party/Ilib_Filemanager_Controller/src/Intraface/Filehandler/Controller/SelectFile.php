@@ -53,7 +53,7 @@ class Intraface_Filehandler_Controller_SelectFile extends k_Controller
             exit;
         }
 
-        $filemanager = new FileManager($kernel); // has to be loaded here, while it should be able to set an error just below.
+        $filemanager = new Ilib_Filehandler_Manager($kernel); // has to be loaded here, while it should be able to set an error just below.
 
         if(isset($this->POST['submit_close']) || isset($this->POST['submit'])) {
             settype($this->POST['selected'], 'array');
@@ -109,7 +109,7 @@ class Intraface_Filehandler_Controller_SelectFile extends k_Controller
             $multiple_choice = false;
         }
 
-        $filemanager = new FileManager($kernel); // has to be loaded here, while it should be able to set an error just below.
+        $filemanager = new Ilib_Filehandler_Manager($kernel); // has to be loaded here, while it should be able to set an error just below.
 
         if(isset($this->GET['upload'])) {
             $options = array('extra_db_condition' => 'intranet_id = '.intval($kernel->intranet->get('id')));

@@ -7,7 +7,7 @@ class Intraface_Filehandler_Controller_Crop extends k_Controller
         $module = $kernel->module('filemanager');
         $translation = $kernel->getTranslation('filemanager');
 
-        $filemanager = new FileManager($kernel, $this->context->name);
+        $filemanager = new Ilib_Filehandler_Manager($kernel, $this->context->name);
         $instance_type = $this->GET['instance_type'];
 
         $img_height = $filemanager->get('height');
@@ -78,7 +78,7 @@ class Intraface_Filehandler_Controller_Crop extends k_Controller
         $module = $kernel->module('filemanager');
         $translation = $kernel->getTranslation('filemanager');
 
-        $filemanager = new FileManager($kernel, $this->context->name);
+        $filemanager = new Ilib_Filehandler_Manager($kernel, $this->context->name);
         $instance_type = $this->POST['instance_type'];
 
         require_once 'Ilib/Validator.php';

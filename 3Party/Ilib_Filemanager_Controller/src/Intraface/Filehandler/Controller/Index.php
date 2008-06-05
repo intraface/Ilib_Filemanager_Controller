@@ -8,17 +8,17 @@ class Intraface_FileHandler_Controller_Index extends k_Controller
         $translation = $kernel->getTranslation('filemanager');
 
         if (!empty($this->GET['delete']) AND is_numeric($this->GET['delete'])) {
-            $filemanager = new FileManager($kernel, $this->GET['delete']);
+            $filemanager = new Ilib_Filehandler_Manager($kernel, $this->GET['delete']);
             if (!$filemanager->delete()) {
                 throw new Exception($this->__('could not delete file'));
             }
         } elseif (!empty($this->GET['undelete']) AND is_numeric($this->GET['undelete'])) {
-            $filemanager = new FileManager($kernel, $this->GET['undelete']);
+            $filemanager = new Ilib_Filehandler_Manager($kernel, $this->GET['undelete']);
             if (!$filemanager->undelete()) {
                 throw new Exception($this->__('could not undelete file'));
             }
         } else {
-            $filemanager = new FileManager($kernel);
+            $filemanager = new Ilib_Filehandler_Manager($kernel);
         }
 
         if(isset($this->GET['search'])) {
