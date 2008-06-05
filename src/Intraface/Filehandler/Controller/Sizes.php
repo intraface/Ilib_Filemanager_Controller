@@ -6,15 +6,14 @@ class Intraface_Filehandler_Controller_Sizes extends k_Controller
         $kernel = $this->registry->get('intraface:kernel');
         $translation = $kernel->getTranslation('filehandler');
         $shared_filehandler = $kernel->useShared('filehandler');
-        $shared_filehandler->includeFile('InstanceManager.php');
 
         if(!empty($this->GET['delete_instance_type_key'])) {
-            $instance_manager = new InstanceManager($kernel, (int)$this->GET['delete_instance_type_key']);
+            $instance_manager = new Ilib_Filehandler_InstanceManager($kernel, (int)$this->GET['delete_instance_type_key']);
             $instance_manager->delete();
         }
 
         $filehandler = new Filehandler($kernel);
-        $instance_manager = new InstanceManager($kernel);
+        $instance_manager = new Ilib_Filehandler_InstanceManager($kernel);
 
         $this->document->title = $translation->get('filehandler settings');
 

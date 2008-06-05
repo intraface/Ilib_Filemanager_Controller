@@ -1,13 +1,14 @@
 <?php
 require_once 'config.local.php';
-if (!defined('DB_DSN')) {
-    define('DB_DSN', 'mysql://' . DB_USER . ':' . DB_PASSWORD . '@' . DB_HOST . '/' . DB_NAME);
-}
 
 set_include_path(PATH_INCLUDE);
 
 require_once 'k.php';
 require_once 'Ilib/ClassLoader.php';
+
+if (!defined('DB_DSN')) {
+    define('DB_DSN', 'mysql://' . DB_USER . ':' . DB_PASSWORD . '@' . DB_HOST . '/' . DB_NAME);
+}
 
 // intraface
 session_start();

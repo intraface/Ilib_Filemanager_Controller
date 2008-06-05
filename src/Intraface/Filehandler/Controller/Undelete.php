@@ -7,7 +7,7 @@ class Intraface_Filehandler_Controller_Undelete extends k_Controller
         $module = $kernel->module('filemanager');
         $translation = $kernel->getTranslation('filemanager');
 
-        $filemanager = new FileManager($kernel, $this->context->name);
+        $filemanager = new Ilib_Filehandler_Manager($kernel, $this->context->name);
         if (!$filemanager->undelete()) {
             trigger_error($translation->get('could not delete file'), E_USER_ERROR);
         }

@@ -10,7 +10,7 @@
 <?php
 
 for($i = 0, $max = count($files); $i < $max; $i++) {
-    $this_filemanager = new FileManager($kernel, $files[$i]['id']);
+    $this_filemanager = new Ilib_Filehandler_Manager($kernel, $files[$i]['id']);
     if ($this_filemanager->get('is_picture')) {
 
     }

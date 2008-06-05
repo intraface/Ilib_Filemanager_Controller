@@ -7,7 +7,7 @@ class Intraface_Filehandler_Controller_Edit extends k_Controller
         $module = $kernel->module('filemanager');
         $translation = $kernel->getTranslation('filemanager');
 
-        $filemanager = new FileManager($kernel, intval($this->context->name));
+        $filemanager = new Ilib_Filehandler_Manager($kernel, intval($this->context->name));
         $values = $filemanager->get();
         $this->document->title = $this->__('edit file');
 
@@ -23,7 +23,7 @@ class Intraface_Filehandler_Controller_Edit extends k_Controller
         $module = $kernel->module('filemanager');
         $translation = $kernel->getTranslation('filemanager');
 
-        $filemanager = new FileManager($kernel, intval($this->context->name));
+        $filemanager = new Ilib_Filehandler_Manager($kernel, intval($this->context->name));
 
         $filemanager->createUpload();
         $filemanager->upload->setSetting('max_file_size', '1000000');

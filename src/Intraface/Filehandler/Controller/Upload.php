@@ -9,7 +9,7 @@ class Intraface_Filehandler_Controller_Upload extends k_Controller
 
         $redirect = Ilib_Redirect::receive($kernel->getSessionId(), $this->registry->get('database:mdb2'));
 
-        $filemanager = new FileManager($kernel);
+        $filemanager = new Ilib_Filehandler_Manager($kernel);
 
         $this->document->title = $this->__('upload file');
 
@@ -27,7 +27,7 @@ class Intraface_Filehandler_Controller_Upload extends k_Controller
         $redirect = Ilib_Redirect::receive($kernel->getSessionId(), $this->registry->get('database:mdb2'));
 
 
-        $filemanager = new FileManager($kernel);
+        $filemanager = new Ilib_Filehandler_Manager($kernel);
         $filemanager->createUpload();
 
         $filemanager->upload->setSetting('file_accessibility', $this->POST['accessibility']);
