@@ -1,6 +1,4 @@
 <?php
-require_once 'Ilib/Redirect.php';
-
 class Intraface_Filehandler_Controller_Upload extends k_Controller
 {
     function GET()
@@ -13,7 +11,7 @@ class Intraface_Filehandler_Controller_Upload extends k_Controller
 
         $filemanager = new FileManager($kernel);
 
-        $this->document->title = $translation->get('upload file');
+        $this->document->title = $this->__('upload file');
 
         $data = array('filemanager' => $filemanager, 'redirect' => $redirect);
 

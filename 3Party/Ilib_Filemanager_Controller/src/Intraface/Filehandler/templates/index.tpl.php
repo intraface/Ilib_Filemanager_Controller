@@ -24,18 +24,18 @@
     <fieldset>
         <legend><?php e(__('search')); ?></legend>
         <label><?php e(__('search text')); ?>:
-            <input type="text" name="text" value="<?php e($filemanager->dbquery->getFilter("text")); ?>" />
+            <input type="text" name="text" value="<?php e($filemanager->getDBQuery()->getFilter("text")); ?>" />
         </label>
         <label><?php e(__('search filter')); ?>:
         <select name="filtration">
             <option value="0"><?php e(__('all', 'filehandler')); ?></option>
-            <option value="1"<?php if ($filemanager->dbquery->getFilter("filtration") == 1) e(' selected="selected"');?>><?php e(__('uploaded today', 'filehandler')); ?></option>
-            <option value="2"<?php if ($filemanager->dbquery->getFilter("filtration") == 2) e(' selected="selected"');?>><?php e(__('uploaded yesterday', 'filehandler')); ?></option>
-            <option value="3"<?php if ($filemanager->dbquery->getFilter("filtration") == 3) e(' selected="selected"');?>><?php e(__('uploaded this week', 'filehandler')); ?></option>
-            <option value="4"<?php if ($filemanager->dbquery->getFilter("filtration") == 4) e(' selected="selected"');?>><?php e(__('edited today', 'filehandler')); ?></option>
-            <option value="5"<?php if ($filemanager->dbquery->getFilter("filtration") == 5) e(' selected="selected"');?>><?php e(__('edited yesterday', 'filehandler')); ?></option>
-            <option value="6"<?php if ($filemanager->dbquery->getFilter("filtration") == 6) e(' selected="selected"');?>><?php e(__('public accessible', 'filemanager')); ?></option>
-            <option value="7"<?php if ($filemanager->dbquery->getFilter("filtration") == 7) e(' selected="selected"');?>><?php e(__('only accessible from intranet', 'filemanager')); ?></option>
+            <option value="1"<?php if ($filemanager->getDBQuery()->getFilter("filtration") == 1) e(' selected="selected"');?>><?php e(__('uploaded today', 'filehandler')); ?></option>
+            <option value="2"<?php if ($filemanager->getDBQuery()->getFilter("filtration") == 2) e(' selected="selected"');?>><?php e(__('uploaded yesterday', 'filehandler')); ?></option>
+            <option value="3"<?php if ($filemanager->getDBQuery()->getFilter("filtration") == 3) e(' selected="selected"');?>><?php e(__('uploaded this week', 'filehandler')); ?></option>
+            <option value="4"<?php if ($filemanager->getDBQuery()->getFilter("filtration") == 4) e(' selected="selected"');?>><?php e(__('edited today', 'filehandler')); ?></option>
+            <option value="5"<?php if ($filemanager->getDBQuery()->getFilter("filtration") == 5) e(' selected="selected"');?>><?php e(__('edited yesterday', 'filehandler')); ?></option>
+            <option value="6"<?php if ($filemanager->getDBQuery()->getFilter("filtration") == 6) e(' selected="selected"');?>><?php e(__('public accessible', 'filemanager')); ?></option>
+            <option value="7"<?php if ($filemanager->getDBQuery()->getFilter("filtration") == 7) e(' selected="selected"');?>><?php e(__('only accessible from intranet', 'filemanager')); ?></option>
 
         </select>
         </label>
@@ -45,7 +45,7 @@
 
         <?php
 
-        $selected_keywords = $filemanager->dbquery->getKeyword();
+        $selected_keywords = $filemanager->getDBQuery()->getKeyword();
 
     $keyword = $filemanager->getKeywordAppender();
     $keywords = $keyword->getUsedKeywords();
@@ -69,7 +69,7 @@
 </form>
 
 
-<?php echo $filemanager->dbquery->display('character'); ?>
+<?php echo $filemanager->getDBQuery()->display('character'); ?>
 
 
 
@@ -110,6 +110,6 @@
     </tbody>
 </table>
 
-<?php echo $filemanager->dbquery->display('paging'); ?>
+<?php echo $filemanager->getDBQuery()->display('paging'); ?>
 
 <?php endif; ?>
