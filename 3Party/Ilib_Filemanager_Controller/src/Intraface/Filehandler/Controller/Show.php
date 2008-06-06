@@ -8,6 +8,10 @@ class Intraface_Filehandler_Controller_Show extends k_Controller
         $translation = $kernel->getTranslation('filemanager');
 
         $filemanager = new Ilib_Filehandler_Manager($kernel, $this->name);
+        
+        if ($filemanager->getId() == 0) {
+            throw new k_http_Response(404);
+        }
 
         $this->document->title = $this->__('file') . ': ' . $filemanager->get('file_name');
 
