@@ -1,5 +1,5 @@
 <?php
-class Intraface_FileHandler_Controller_Index extends k_Controller
+class Intraface_Filehandler_Controller_Index extends k_Controller
 {
     public function GET()
     {
