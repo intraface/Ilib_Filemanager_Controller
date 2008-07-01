@@ -26,14 +26,12 @@ class Intraface_Filehandler_Controller_Upload extends k_Controller
 
         $redirect = Ilib_Redirect::receive($kernel->getSessionId(), $this->registry->get('database:mdb2'));
 
-
         $filemanager = new Ilib_Filehandler_Manager($kernel);
-        $filemanager->createUpload();
 
-        $filemanager->upload->setSetting('file_accessibility', $this->POST['accessibility']);
-        $filemanager->upload->setSetting('max_file_size', '10000000');
-        $filemanager->upload->setSetting('add_keyword', $this->POST['keyword']);
-        if($id = $filemanager->upload->upload('userfile')) {
+        $filemanager->getUploader()->setSetting('file_accessibility', $this->POST['accessibility']);
+        $filemanager->getUploader()->setSetting('max_file_size', '10000000');
+        $filemanager->getUploader()->setSetting('add_keyword', $this->POST['keyword']);
+        if($id = $filemanager->getUploader()->upload('userfile')) {
             $location = $redirect->getRedirect($this->context->url($id));
             throw new k_http_Redirect($location);
         }
