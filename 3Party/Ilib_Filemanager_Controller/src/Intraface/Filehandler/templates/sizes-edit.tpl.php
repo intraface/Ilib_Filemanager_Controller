@@ -12,20 +12,20 @@
         <div class="formrow">
             <label for="name"><?php e(__('name')); ?>:</label>
             <?php if($instance_manager->get('type_key') > 0 && $instance_manager->get('origin') != 'custom'): ?>
-                <?php if(isset($value['name'])) echo '<div>'.safeToForm($value['name']).'</div>'; ?>
+                <?php if(isset($value['name'])) echo '<div>'.htmlentities($value['name']).'</div>'; ?>
             <?php else: ?>
-                <input type="input" name="name" id="name" value="<?php if(isset($value['name'])) echo safeToForm($value['name']); ?>" /> <span><?php e(__('allowed characters')); ?>: a-z 0-9 _ -</span>
+                <input type="input" name="name" id="name" value="<?php if(isset($value['name'])) e($value['name']); ?>" /> <span><?php e(__('allowed characters')); ?>: a-z 0-9 _ -</span>
             <?php endif; ?>
         </div>
 
         <div class="formrow">
             <label for="max_width"><?php e(__('maximum width')); ?>:</label>
-            <input type="input" name="max_width" id="max_width" value="<?php if(isset($value['max_width'])) echo safeToForm($value['max_width']); ?>" />
+            <input type="input" name="max_width" id="max_width" value="<?php if(isset($value['max_width'])) echo e($value['max_width']); ?>" />
         </div>
 
         <div class="formrow">
             <label for="max_height"><?php e(__('maximum height')); ?>:</label>
-            <input type="input" name="max_height" id="max_height" value="<?php if(isset($value['max_height'])) echo safeToForm($value['max_height']); ?>" />
+            <input type="input" name="max_height" id="max_height" value="<?php if(isset($value['max_height'])) echo e($value['max_height']); ?>" />
         </div>
 
         <div class="formrow">

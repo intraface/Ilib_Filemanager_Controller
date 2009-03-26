@@ -112,7 +112,7 @@
             $shared_filehandler = $kernel->useShared('filehandler');
             ?>
             <ul class="options">
-                <li><a href="<?php e(url('../sizes')); ?>"><?php e(__('manage your files sizes')); ?></a></li>
+                <li><a href="<?php e(url('../sizes')); ?>"><?php e(__('manage your image sizes')); ?></a></li>
             </ul>
         <?php endif; ?>
         <?php

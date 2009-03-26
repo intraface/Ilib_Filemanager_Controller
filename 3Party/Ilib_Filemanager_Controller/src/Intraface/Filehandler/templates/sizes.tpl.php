@@ -1,8 +1,12 @@
 <h1><?php e(__('filehandler settings')); ?></h1>
 
-    <ul class="options">
-        <li><a href="<?php e(url('../')); ?>"><?php e(__('go back')); ?></a></li>
-    </ul>
+<ul class="options">
+    <li><a href="<?php e(url('../')); ?>"><?php e(__('go back')); ?></a></li>
+</ul>
+
+<form action="<?php e($this->url(null)); ?>" method="post">
+    <input type="submit" name="all_files" value="<?php e(__('Delete all instances of all files')); ?>" />
+</form>
 
 <?php $instance_manager->error->view(); ?>
 
