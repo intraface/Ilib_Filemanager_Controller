@@ -3,6 +3,7 @@
 <ul class="options">
     <li><a href="<?php e(url('upload')); ?>" onclick="location.href='<?php e(url('uploadmultiple')); ?>'; return false;"><?php e(__('upload file')); ?></a></li>
     <!-- <li><a href="upload_multiple.php">Upload billeder</a></li> -->
+    <li><a href="<?php e(url('sizes')); ?>"><?php e(__('edit image sizes')); ?></a></li>
     <?php if (count($files) > 0): ?>
     <li><a href="<?php e(url('batchedit', array('use_stored' => 'true'))); ?>"><?php e(__('batch edit files')); ?></a></li>
     <?php endif; ?>

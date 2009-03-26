@@ -1,25 +1,48 @@
 <?php
 class Intraface_Filehandler_Controller_Sizes extends k_Controller
 {
-    function GET()
+    function getKernel()
     {
         $kernel = $this->registry->get('intraface:kernel');
-        $translation = $kernel->getTranslation('filehandler');
         $shared_filehandler = $kernel->useShared('filehandler');
+        return $kernel;
+    }
 
-        if(!empty($this->GET['delete_instance_type_key'])) {
-            $instance_manager = new Ilib_Filehandler_InstanceManager($kernel, (int)$this->GET['delete_instance_type_key']);
+    function getTranslation()
+    {
+        return $this->getKernel()->getTranslation('filehandler');
+    }
+
+    function getFilehandler()
+    {
+    	return new Ilib_Filehandler($this->getKernel());
+    }
+
+    function GET()
+    {
+
+        if (!empty($this->GET['delete_instance_type_key'])) {
+            $instance_manager = new Ilib_Filehandler_InstanceManager($this->getKernel(), (int)$this->GET['delete_instance_type_key']);
             $instance_manager->delete();
         }
 
-        $filehandler = new Ilib_Filehandler($kernel);
-        $instance_manager = new Ilib_Filehandler_InstanceManager($kernel);
+        $instance_manager = new Ilib_Filehandler_InstanceManager($this->getKernel());
 
-        $this->document->title = $translation->get('filehandler settings');
+        $this->document->title = $this->getTranslation()->get('Filehandler settings');
 
         $data = array('instance_manager' => $instance_manager);
 
         return $this->render(dirname(__FILE__) . '/../templates/sizes.tpl.php', $data);
+    }
+
+    function POST()
+    {
+    	if ($this->POST['all_files']) {
+            $manager = new Ilib_Filehandler_Manager($this->getKernel());
+            $manager->deleteAllInstances();
+    	}
+
+        throw new k_http_Redirect($this->url());
     }
 
     function forward($name)
