@@ -12,7 +12,7 @@ class Intraface_Filehandler_Controller_Sizes extends k_Controller
             $instance_manager->delete();
         }
 
-        $filehandler = new Filehandler($kernel);
+        $filehandler = new Ilib_Filehandler($kernel);
         $instance_manager = new Ilib_Filehandler_InstanceManager($kernel);
 
         $this->document->title = $translation->get('filehandler settings');
