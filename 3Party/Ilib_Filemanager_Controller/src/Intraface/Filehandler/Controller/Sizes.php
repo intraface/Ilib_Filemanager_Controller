@@ -8,11 +8,6 @@ class Intraface_Filehandler_Controller_Sizes extends k_Controller
         return $kernel;
     }
 
-    function getTranslation()
-    {
-        return $this->getKernel()->getTranslation('filehandler');
-    }
-
     function getFilehandler()
     {
     	return new Ilib_Filehandler($this->getKernel());
@@ -28,7 +23,7 @@ class Intraface_Filehandler_Controller_Sizes extends k_Controller
 
         $instance_manager = new Ilib_Filehandler_InstanceManager($this->getKernel());
 
-        $this->document->title = $this->getTranslation()->get('Filehandler settings');
+        $this->document->title = $this->__('Filehandler settings');
 
         $data = array('instance_manager' => $instance_manager);
 
