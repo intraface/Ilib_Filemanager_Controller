@@ -4,7 +4,7 @@
     <taskdef classname="phing.tasks.ext.IlibPearDeployerTask" name="peardeploy" />
 
     <property name="package-name" value="${phing.project.name}" />
-    <property name="version" value="0.2.3" />
+    <property name="version" value="0.2.4" />
     <property name="stability" value="alpha" />
     <property name="pear.channel" value="public.intraface.dk" />
 
@@ -55,7 +55,7 @@
             <dependencies>
                 <php minimum_version="5.2.0" />
                 <pear minimum_version="1.6.0" recommended_version="1.6.1" />
-                <package name="Ilib_FileHandler" channel="public.intraface.dk" minimum_version="0.2.0" />
+                <package name="Ilib_FileHandler" channel="public.intraface.dk" minimum_version="0.2.1" />
                 <package name="Ilib_Keyword_Controller" channel="public.intraface.dk" minimum_version="0.2.0" />
                 <package name="konstrukt" channel="public.intraface.dk" recommended_version="0.4.0" minimum_version="" />
             </dependencies>
