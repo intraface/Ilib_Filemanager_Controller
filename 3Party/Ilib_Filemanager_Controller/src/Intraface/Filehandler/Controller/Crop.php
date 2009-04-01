@@ -28,29 +28,35 @@ class Intraface_Filehandler_Controller_Crop extends k_Controller
         $editor_min_width = $type['max_width'] * $size_ratio;
         $editor_min_height = $type['max_height'] * $size_ratio;
 
-        if($editor_min_width > $editor_img_width) {
+        if ($editor_min_width > $editor_img_width) {
             $editor_min_width = $editor_img_width;
             $editor_min_height = ($editor_img_width/$editor_min_width)*$editor_min_height;
         }
 
-        if($editor_min_height > $editor_img_height) {
+        if ($editor_min_height > $editor_img_height) {
             $editor_min_height = $editor_img_height;
             $editor_min_width = ($editor_img_height/$editor_min_height)*$editor_min_width;
         }
 
-        if($type['resize_type'] != 'strict' && !empty($this->GET['unlock_ratio'])) {
+        if ($type['resize_type'] != 'strict' && !empty($this->GET['unlock_ratio'])) {
             $unlock_ratio = 1;
         } else {
             $unlock_ratio = 0;
         }
 
-        $this->document->title = $this->__('crop image') . ' ' . $filemanager->get('file_name');
+        $size_ratio = doubleval(1/$size_ratio);
+
+        // make sure that it is with a . and not ,
+        $size_ratio = str_replace(',', '.', $size_ratio);
+
+        $this->document->title = $this->__('Crop image') . ': ' . $filemanager->get('file_name');
         $this->document->scripts[] = $this->url('/scripts/cropper/lib/prototype.js');
         // @todo HACK only way I can get the link to be correct with a comma
         $this->document->scripts[] = $this->url('/scripts/cropper/lib/scriptaculous.js') . '?load=builder,dragdrop';
         $this->document->scripts[] = $this->url('/scripts/cropper/cropper.js');
         $this->document->scripts[] = $this->url('/scripts/crop_image.js.php',
-            array('size_ratio' => doubleval(1/$size_ratio),
+            array(
+                  'size_ratio' => $size_ratio,
                   'max_width' => round($editor_min_width),
                   'max_height' => round($editor_min_height),
                   'unlock_ratio' => $unlock_ratio,
@@ -87,7 +93,7 @@ class Intraface_Filehandler_Controller_Crop extends k_Controller
         //$validator->isNumeric((int)$this->POST['x'], 'invalid width', 'zero_or_greater,integer');
         //$validator->isNumeric((int)$this->POST['y'], 'invalid width', 'zero_or_greater,integer');
 
-        if(!$filemanager->error->isError()) {
+        if (!$filemanager->error->isError()) {
             $filemanager->createInstance($instance_type);
             $filemanager->instance->delete();
 
@@ -98,7 +104,7 @@ class Intraface_Filehandler_Controller_Crop extends k_Controller
 
             $filemanager->createInstance($instance_type, $param);
 
-            if(!$filemanager->error->isError()) {
+            if (!$filemanager->error->isError()) {
                 throw new k_http_Redirect($this->context->url());
             }
        }
