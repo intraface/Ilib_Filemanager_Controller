@@ -1,7 +1,7 @@
 <h1><?php e(__('files')); ?></h1>
 
 <ul class="options">
-    <li><a href="index.php?use_stored=true"><?php e(__('regret', 'common')); ?></a></li>
+    <li><a href="<?php e(url('../', array('use_stored' => 'true'))); ?>"><?php e(__('Cancel', 'common')); ?></a></li>
 </ul>
 
 
@@ -9,16 +9,16 @@
 <form action="<?php e(url('./')); ?>" method="post">
 <?php
 
-for($i = 0, $max = count($files); $i < $max; $i++) {
-    $this_filemanager = new Ilib_Filehandler_Manager($kernel, $files[$i]['id']);
+foreach ($files as $file) {
+    $this_filemanager = new Ilib_Filehandler_Manager($kernel, $file['id']);
     if ($this_filemanager->get('is_picture')) {
 
     }
     $keyword_object = $this_filemanager->getKeywordAppender();
-    $files[$i]['keywords'] = $keyword_object->getConnectedKeywordsAsString();
+    $file['keywords'] = $keyword_object->getConnectedKeywordsAsString();
     ?>
     <table class="stripe">
-    <caption>Fil</caption>
+    <caption><?php e(__('File')); ?></caption>
         <tbody>
             <tr>
                 <td rowspan="5" style="width: 280px;">
@@ -32,19 +32,19 @@ for($i = 0, $max = count($files); $i < $max; $i++) {
             </tr>
             <tr>
                 <th><?php e(__('file')); ?></th>
-                <td><?php e($files[$i]['file_name']); ?></td>
+                <td><?php e($file['file_name']); ?></td>
             </tr>
             <tr>
                 <th><?php e(__('file description')); ?></th>
-                <td><textarea style="width: 400px; height; 100px;" name="description[<?php e($files[$i]['id']); ?>]"><?php e($files[$i]['description']); ?></textarea></td>
+                <td><textarea style="width: 400px; height; 100px;" name="description[<?php e($file['id']); ?>]"><?php e($file['description']); ?></textarea></td>
             </tr>
             <tr>
                 <th><?php e(__('keywords', 'keyword')); ?></th>
-                <td><input type="text" name="keywords[<?php e($files[$i]['id']); ?>]" value="<?php e($files[$i]['keywords']); ?>" /></td>
+                <td><input type="text" name="keywords[<?php e($file['id']); ?>]" value="<?php e($file['keywords']); ?>" /></td>
             </tr>
             <tr>
                 <th><?php e(__('file accessibility')); ?></th>
-                <td><input type="radio" id="accessibility[<?php e($files[$i]['id']); ?>]_public" name="accessibility[<?php e($files[$i]['id']); ?>]" value="public" <?php if(isset($files[$i]['accessibility']) && $files[$i]['accessibility'] == 'public') e('checked="checked"'); ?> /><label for="accessibility[<?php e($files[$i]['id']); ?>]_public"><?php e(__('public')); ?></label> &nbsp; &nbsp; <input type="radio" id="accessibility[<?php e($files[$i]['id']); ?>]_intranet" name="accessibility[<?php e($files[$i]['id']); ?>]" value="intranet" <?php if(isset($files[$i]['accessibility']) && $files[$i]['accessibility'] == 'intranet') e('checked="checked"'); ?> /><label for="accessibility[<?php e($files[$i]['id']); ?>]_intranet"><?php e(__('intranet')); ?></label></td>
+                <td><input type="radio" id="accessibility[<?php e($file['id']); ?>]_public" name="accessibility[<?php e($file['id']); ?>]" value="public" <?php if(isset($file['accessibility']) && $file['accessibility'] == 'public') e('checked="checked"'); ?> /><label for="accessibility[<?php e($file['id']); ?>]_public"><?php e(__('public')); ?></label> &nbsp; &nbsp; <input type="radio" id="accessibility[<?php e($file['id']); ?>]_intranet" name="accessibility[<?php e($file['id']); ?>]" value="intranet" <?php if(isset($file['accessibility']) && $file['accessibility'] == 'intranet') e('checked="checked"'); ?> /><label for="accessibility[<?php e($file['id']); ?>]_intranet"><?php e(__('intranet')); ?></label></td>
             </tr>
         </tbody>
     </table>
@@ -53,6 +53,6 @@ for($i = 0, $max = count($files); $i < $max; $i++) {
 ?>
 <p>
 <input type="submit" value="<?php e(__('save', 'common')); ?>" />
-<a href="<?php e(url('../', array('use_stored' => 'true'))); ?>"><?php e(__('regret', 'common')); ?></a>
+<a href="<?php e(url('../', array('use_stored' => 'true'))); ?>"><?php e(__('Cancel', 'common')); ?></a>
 </p>
 </form>
