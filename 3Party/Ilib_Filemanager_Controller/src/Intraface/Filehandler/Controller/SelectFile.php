@@ -120,7 +120,7 @@ class Intraface_Filehandler_Controller_SelectFile extends k_Controller
             } else {
                 $url = $upload_redirect->setDestination($module_filemanager->getPath().'upload.php', $module_filemanager->getPath().'select_file.php?redirect_id='.$receive_redirect->get('id').'&filtration=1');
             }
-            header("Location: ".$url);
+            throw new k_http_Redirect($url);
         }
 
         if($multiple_choice) {
