@@ -28,6 +28,6 @@
 </fieldset>
 
 <input type="submit" class="save" name="submit" value="<?php e(__('upload')); ?>" />
-<a href="<?php e($redirect->getRedirect(url('../'))); ?>"><?php e(__('regret', 'common')); ?></a>
+<a href="<?php e($redirect->getRedirect(url('../'))); ?>"><?php e(__('Cancel', 'common')); ?></a>
 
 </form>
