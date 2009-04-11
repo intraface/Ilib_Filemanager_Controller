@@ -103,7 +103,7 @@
     <?php endif; ?>
 
     <input type="submit" name="submit_close" id="submit_close-select_file" value="<?php e(__('save and transfer')); ?>" />
-    eller <a href="<?php e($receive_redirect->getRedirect($this->url())); ?>"><?php e(__('regret' ,'common')); ?></a>
+    eller <a href="<?php e($receive_redirect->getRedirect($this->url())); ?>"><?php e(__('Cancel' ,'common')); ?></a>
 </div>
 
 </form>
