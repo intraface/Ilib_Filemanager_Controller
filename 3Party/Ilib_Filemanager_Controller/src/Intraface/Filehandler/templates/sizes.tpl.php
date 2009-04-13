@@ -1,7 +1,7 @@
-<h1><?php e(__('filehandler settings')); ?></h1>
+<h1><?php e(__('Filehandler settings')); ?></h1>
 
 <ul class="options">
-    <li><a href="<?php e(url('../')); ?>"><?php e(__('go back')); ?></a></li>
+    <li><a href="<?php e(url('../')); ?>"><?php e(__('Go back')); ?></a></li>
 </ul>
 
 <form action="<?php e($this->url(null)); ?>" method="post">
@@ -11,23 +11,19 @@
 <?php $instance_manager->error->view(); ?>
 
 <?php
-// $filehandler->createInstance();
-// $instances = $filehandler->instance->getTypes();
-
-$instances = $instance_manager->getList();
-if(count($instances) > 0): ?>
+if (!empty($instances) AND count($instances) > 0): ?>
     <table class="stripe">
-        <caption><?php e(__('instance types')); ?></caption>
+        <caption><?php e(__('Instance types')); ?></caption>
         <thead>
             <tr>
-                <th><?php e(__('name')); ?></th>
-                <th><?php e(__('maximum width')); ?></th>
-                <th><?php e(__('maximum height')); ?></th>
+                <th><?php e(__('Name')); ?></th>
+                <th><?php e(__('Maximum width')); ?></th>
+                <th><?php e(__('Maximum height')); ?></th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach($instances AS $instance): ?>
+            <?php foreach ($instances as $instance): ?>
                 <tr>
                     <td><?php e($instance['name']); ?></td>
                     <td><?php e($instance['max_width']); ?></td>
@@ -44,8 +40,8 @@ if(count($instances) > 0): ?>
             <?php endforeach; ?>
         </tbody>
     </table>
-
-    <ul class="options">
-        <li><a href="<?php e(url('add')); ?>"><?php e(__('add new instance type')); ?></a></li>
-    </ul>
 <?php endif; ?>
+
+<ul class="options">
+    <li><a href="<?php e(url('add')); ?>"><?php e(__('Add new instance type')); ?></a></li>
+</ul>

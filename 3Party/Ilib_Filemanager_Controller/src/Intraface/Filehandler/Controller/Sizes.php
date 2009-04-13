@@ -25,7 +25,12 @@ class Intraface_Filehandler_Controller_Sizes extends k_Controller
 
         $this->document->title = $this->__('Filehandler settings');
 
-        $data = array('instance_manager' => $instance_manager);
+        // $filehandler->createInstance();
+        // $instances = $filehandler->instance->getTypes();
+
+        $instances = $instance_manager->getList();
+
+        $data = array('instance_manager' => $instance_manager, 'instances' => $instances);
 
         return $this->render(dirname(__FILE__) . '/../templates/sizes.tpl.php', $data);
     }

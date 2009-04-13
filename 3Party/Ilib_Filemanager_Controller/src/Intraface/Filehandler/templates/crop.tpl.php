@@ -1,4 +1,4 @@
-<h1><?php e(__('Crop image').': '.$filemanager->get('file')); ?></h1>
+<h1><?php e(__('Crop image').': '.$filemanager->get('file_name')); ?></h1>
 
 <ul class="options" style="clear:both;">
     <?php if($type['resize_type'] != 'strict' && $unlock_ratio == 1): ?>

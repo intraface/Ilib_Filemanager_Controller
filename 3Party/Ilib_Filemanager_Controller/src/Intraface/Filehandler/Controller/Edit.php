@@ -6,8 +6,9 @@ class Intraface_Filehandler_Controller_Edit extends k_Controller
         $kernel = $this->registry->get('intraface:kernel');
         $module = $kernel->module('filemanager');
         $translation = $kernel->getTranslation('filemanager');
+        $gateway = $this->registry->get('intraface:filehandler:gateway');
 
-        $filemanager = new Ilib_Filehandler_Manager($kernel, intval($this->context->name));
+        $filemanager = $gateway->getFromId(intval($this->context->name));
         $values = $filemanager->get();
         $this->document->title = $this->__('edit file');
 
@@ -20,10 +21,11 @@ class Intraface_Filehandler_Controller_Edit extends k_Controller
     function POST()
     {
         $kernel = $this->registry->get('intraface:kernel');
+        $gateway = $this->registry->get('intraface:filehandler:gateway');
         $module = $kernel->module('filemanager');
         $translation = $kernel->getTranslation('filemanager');
 
-        $filemanager = new Ilib_Filehandler_Manager($kernel, intval($this->context->name));
+        $filemanager = $gateway->getFromId(intval($this->context->name));
 
         $filemanager->createUpload();
         $filemanager->upload->setSetting('max_file_size', '1000000');
