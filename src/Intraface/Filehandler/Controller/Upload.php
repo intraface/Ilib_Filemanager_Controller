@@ -9,7 +9,7 @@ class Intraface_Filehandler_Controller_Upload extends k_Controller
 
         $redirect = Ilib_Redirect::receive($kernel->getSessionId(), $this->registry->get('database:mdb2'));
 
-        $filemanager = new Ilib_Filehandler_Manager($kernel);
+        $filemanager = new Ilib_Filehandler($kernel);
 
         $this->document->title = $this->__('upload file');
 
@@ -26,7 +26,7 @@ class Intraface_Filehandler_Controller_Upload extends k_Controller
 
         $redirect = Ilib_Redirect::receive($kernel->getSessionId(), $this->registry->get('database:mdb2'));
 
-        $filemanager = new Ilib_Filehandler_Manager($kernel);
+        $filemanager = new Ilib_Filehandler($kernel);
 
         $filemanager->getUploader()->setSetting('file_accessibility', $this->POST['accessibility']);
         $filemanager->getUploader()->setSetting('max_file_size', '10000000');

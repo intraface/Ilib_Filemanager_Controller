@@ -4,55 +4,52 @@ class Intraface_Filehandler_Controller_Index extends k_Controller
     public function GET()
     {
         $kernel = $this->registry->get('intraface:kernel');
-        $module = $kernel->module('filemanager');
-        $translation = $kernel->getTranslation('filemanager');
+        $gateway = $this->registry->get('intraface:filehandler:gateway');
 
         if (!empty($this->GET['delete']) AND is_numeric($this->GET['delete'])) {
-            $filemanager = new Ilib_Filehandler_Manager($kernel, $this->GET['delete']);
+            $filehandler = $gateway->getFromId($this->GET['delete']);
             if (!$filemanager->delete()) {
-                throw new Exception($this->__('could not delete file'));
+                throw new Exception($this->__('Could not delete file'));
             }
         } elseif (!empty($this->GET['undelete']) AND is_numeric($this->GET['undelete'])) {
-            $filemanager = new Ilib_Filehandler_Manager($kernel, $this->GET['undelete']);
+            $filehandler = $gateway->getFromId($this->GET['delete']);
             if (!$filemanager->undelete()) {
-                throw new Exception($this->__('could not undelete file'));
+                throw new Exception($this->__('Could not undelete file'));
             }
-        } else {
-            $filemanager = new Ilib_Filehandler_Manager($kernel);
         }
 
-        if(isset($this->GET['search'])) {
+        if (isset($this->GET['search'])) {
 
-            if(isset($this->GET['text']) && $this->GET['text'] != '') {
-                $filemanager->getDBQuery()->setFilter('text', $this->GET['text']);
+            if (isset($this->GET['text']) && $this->GET['text'] != '') {
+                $gateway->getDBQuery()->setFilter('text', $this->GET['text']);
             }
 
-            if(isset($this->GET['filtration']) && intval($this->GET['filtration']) != 0) {
-                $filemanager->getDBQuery()->setFilter('filtration', $this->GET['filtration']);
+            if (isset($this->GET['filtration']) && intval($this->GET['filtration']) != 0) {
+                $gateway->getDBQuery()->setFilter('filtration', $this->GET['filtration']);
 
                 switch($this->GET['filtration']) {
                     case 1:
-                        $filemanager->getDBQuery()->setFilter('uploaded_from_date', date('d-m-Y').' 00:00');
+                        $gateway->getDBQuery()->setFilter('uploaded_from_date', date('d-m-Y').' 00:00');
                         break;
                     case 2:
-                        $filemanager->getDBQuery()->setFilter('uploaded_from_date', date('d-m-Y', time()-60*60*24).' 00:00');
-                        $filemanager->getDBQuery()->setFilter('uploaded_to_date', date('d-m-Y', time()-60*60*24).' 23:59');
+                        $gateway->getDBQuery()->setFilter('uploaded_from_date', date('d-m-Y', time()-60*60*24).' 00:00');
+                        $gateway->getDBQuery()->setFilter('uploaded_to_date', date('d-m-Y', time()-60*60*24).' 23:59');
                         break;
                     case 3:
-                        $filemanager->getDBQuery()->setFilter('uploaded_from_date', date('d-m-Y', time()-60*60*24*7).' 00:00');
+                        $gateway->getDBQuery()->setFilter('uploaded_from_date', date('d-m-Y', time()-60*60*24*7).' 00:00');
                         break;
                     case 4:
-                        $filemanager->getDBQuery()->setFilter('edited_from_date', date('d-m-Y').' 00:00');
+                        $gateway->getDBQuery()->setFilter('edited_from_date', date('d-m-Y').' 00:00');
                         break;
                     case 5:
-                        $filemanager->getDBQuery()->setFilter('edited_from_date', date('d-m-Y', time()-60*60*24).' 00:00');
-                        $filemanager->getDBQuery()->setFilter('edited_to_date', date('d-m-Y', time()-60*60*24).' 23:59');
+                        $gateway->getDBQuery()->setFilter('edited_from_date', date('d-m-Y', time()-60*60*24).' 00:00');
+                        $gateway->getDBQuery()->setFilter('edited_to_date', date('d-m-Y', time()-60*60*24).' 23:59');
                         break;
                     case 6:
-                        $filemanager->getDBQuery()->setFilter('accessibility', 'public');
+                        $gateway->getDBQuery()->setFilter('accessibility', 'public');
                         break;
                     case 7:
-                        $filemanager->getDBQuery()->setFilter('accessibility', 'intranet');
+                        $gateway->getDBQuery()->setFilter('accessibility', 'intranet');
                         break;
                     default:
                         // Probably 0, so nothing happens
@@ -60,24 +57,24 @@ class Intraface_Filehandler_Controller_Index extends k_Controller
                 }
             }
 
-            if(isset($this->GET['keyword']) && is_array($this->GET['keyword']) && count($this->GET['keyword']) > 0) {
-                $filemanager->getDBQuery()->setKeyword($this->GET['keyword']);
+            if (isset($this->GET['keyword']) && is_array($this->GET['keyword']) && count($this->GET['keyword']) > 0) {
+                $gateway->getDBQuery()->setKeyword($this->GET['keyword']);
             }
-        } elseif(isset($this->GET['character'])) {
-            $filemanager->getDBQuery()->useCharacter();
+        } elseif (isset($this->GET['character'])) {
+            $gateway->getDBQuery()->useCharacter();
         } else {
-            $filemanager->getDBQuery()->setSorting('file_handler.date_created DESC');
+            $gateway->getDBQuery()->setSorting('file_handler.date_created DESC');
         }
 
-        $filemanager->getDBQuery()->defineCharacter('character', 'file_handler.file_name');
-        $filemanager->getDBQuery()->usePaging('paging', $kernel->setting->get('user', 'rows_pr_page'));
-        $filemanager->getDBQuery()->storeResult('use_stored', 'filemanager', 'toplevel');
-        $filemanager->getDBQuery()->setUri($this->url());
+        $gateway->getDBQuery()->defineCharacter('character', 'file_handler.file_name');
+        $gateway->getDBQuery()->usePaging('paging', $kernel->setting->get('user', 'rows_pr_page'));
+        $gateway->getDBQuery()->storeResult('use_stored', 'filemanager', 'toplevel');
+        $gateway->getDBQuery()->setUri($this->url());
 
-        $files = $filemanager->getList();
+        $files = $gateway->getList();
 
         $data = array('files' => $files,
-                      'filemanager' => $filemanager);
+                      'filemanager' => $gateway);
 
         return $this->render(dirname(__FILE__) . '/../templates/index.tpl.php', $data);
     }

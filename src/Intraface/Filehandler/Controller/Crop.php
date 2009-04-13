@@ -4,10 +4,11 @@ class Intraface_Filehandler_Controller_Crop extends k_Controller
     function GET()
     {
         $kernel = $this->registry->get('intraface:kernel');
+        $gateway = $this->registry->get('intraface:filehandler:gateway');
         $module = $kernel->module('filemanager');
         $translation = $kernel->getTranslation('filemanager');
 
-        $filemanager = new Ilib_Filehandler_Manager($kernel, $this->context->name);
+        $filemanager = $gateway->getFromId($this->context->name);
         $instance_type = $this->GET['instance_type'];
 
         $img_height = $filemanager->get('height');
@@ -81,10 +82,11 @@ class Intraface_Filehandler_Controller_Crop extends k_Controller
     function POST()
     {
         $kernel = $this->registry->get('intraface:kernel');
+        $gateway = $this->registry->get('intraface:filehandler:gateway');
         $module = $kernel->module('filemanager');
         $translation = $kernel->getTranslation('filemanager');
 
-        $filemanager = new Ilib_Filehandler_Manager($kernel, $this->context->name);
+        $filemanager = $gateway->getFromId($this->context->name);
         $instance_type = $this->POST['instance_type'];
 
         $validator = new Ilib_Validator($filemanager->error);
