@@ -197,4 +197,10 @@ $application->registry->registerConstructor('database:mdb2', create_function(
 '
 ));
 
+$application->registry->registerConstructor('intraface:filehandler:gateway', create_function(
+  '$className, $args, $registry',
+  'return new Ilib_Filehandler_Gateway($registry->get("intraface:kernel"));'
+));
+
+
 $application->dispatch();
