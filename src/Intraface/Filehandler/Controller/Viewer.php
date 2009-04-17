@@ -1,12 +1,12 @@
 <?php
-class Intraface_Filehandler_Controller_Viewer extends k_Controller
+class Intraface_Filehandler_Controller_Viewer extends k_Component
 {
     function GET()
     {
         if (empty($_SERVER["QUERY_STRING"])) {
             throw new Exception('no querystring is given!');
             exit;
-        }        
+        }
 
         $query_parts = explode('/', $_SERVER["QUERY_STRING"]);
 

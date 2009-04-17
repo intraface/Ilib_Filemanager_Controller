@@ -1,11 +1,9 @@
 <?php
-class Intraface_Filehandler_Controller_Upload extends k_Controller
+class Intraface_Filehandler_Controller_Upload extends k_Component
 {
     function GET()
     {
         $kernel = $this->registry->get('intraface:kernel');
-        $module = $kernel->module('filemanager');
-        $translation = $kernel->getTranslation('filemanager');
 
         $redirect = Ilib_Redirect::receive($kernel->getSessionId(), $this->registry->get('database:mdb2'));
 
