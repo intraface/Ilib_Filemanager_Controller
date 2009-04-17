@@ -1,5 +1,5 @@
 <?php
-class Intraface_Filehandler_Controller_Index extends k_Component
+class Intraface_Filehandler_Controller_Index extends k_Controller
 {
     function getKernel()
     {
@@ -64,12 +64,12 @@ class Intraface_Filehandler_Controller_Index extends k_Component
             if (isset($this->GET['keyword']) && is_array($this->GET['keyword']) && count($this->GET['keyword']) > 0) {
                 $gateway->getDBQuery()->setKeyword($this->GET['keyword']);
             }
+
         } elseif (isset($this->GET['character'])) {
             $gateway->getDBQuery()->useCharacter();
         } else {
             $gateway->getDBQuery()->setSorting('file_handler.date_created DESC');
         }
-
         $gateway->getDBQuery()->defineCharacter('character', 'file_handler.file_name');
         $gateway->getDBQuery()->usePaging('paging', $this->getKernel()->setting->get('user', 'rows_pr_page'));
         $gateway->getDBQuery()->storeResult('use_stored', 'filemanager', 'toplevel');

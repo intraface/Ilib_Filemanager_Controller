@@ -1,5 +1,5 @@
 <?php
-class Intraface_Filehandler_Controller_Show extends k_Component
+class Intraface_Filehandler_Controller_Show extends k_Controller
 {
     function getKernel()
     {
