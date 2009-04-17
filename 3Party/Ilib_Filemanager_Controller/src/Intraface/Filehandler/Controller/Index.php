@@ -1,9 +1,13 @@
 <?php
-class Intraface_Filehandler_Controller_Index extends k_Controller
+class Intraface_Filehandler_Controller_Index extends k_Component
 {
+    function getKernel()
+    {
+    	return $this->registry->get('intraface:kernel');
+    }
+
     public function GET()
     {
-        $kernel = $this->registry->get('intraface:kernel');
         $gateway = $this->registry->get('intraface:filehandler:gateway');
 
         if (!empty($this->GET['delete']) AND is_numeric($this->GET['delete'])) {
@@ -67,7 +71,7 @@ class Intraface_Filehandler_Controller_Index extends k_Controller
         }
 
         $gateway->getDBQuery()->defineCharacter('character', 'file_handler.file_name');
-        $gateway->getDBQuery()->usePaging('paging', $kernel->setting->get('user', 'rows_pr_page'));
+        $gateway->getDBQuery()->usePaging('paging', $this->getKernel()->setting->get('user', 'rows_pr_page'));
         $gateway->getDBQuery()->storeResult('use_stored', 'filemanager', 'toplevel');
         $gateway->getDBQuery()->setUri($this->url());
 

@@ -1,5 +1,5 @@
 <?php
-class Intraface_Filehandler_Controller_Sizes_Edit extends k_Controller
+class Intraface_Filehandler_Controller_Sizes_Edit extends k_Component
 {
     function POST()
     {

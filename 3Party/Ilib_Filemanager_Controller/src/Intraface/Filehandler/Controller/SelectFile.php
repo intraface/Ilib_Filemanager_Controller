@@ -1,5 +1,5 @@
 <?php
-class Intraface_Filehandler_Controller_SelectFile extends k_Controller
+class Intraface_Filehandler_Controller_SelectFile extends k_Component
 {
     function getFileAppender()
     {
