@@ -1,33 +1,33 @@
-<h1><?php e(__('file manager')); ?></h1>
+<h1><?php e(__('File manager')); ?></h1>
 
 <ul class="options">
-    <li><a href="<?php e(url('upload')); ?>" onclick="location.href='<?php e(url('uploadmultiple')); ?>'; return false;"><?php e(__('upload file')); ?></a></li>
+    <li><a href="<?php e(url('upload')); ?>" onclick="location.href='<?php e(url('uploadmultiple')); ?>'; return false;"><?php e(__('Upload file')); ?></a></li>
     <!-- <li><a href="upload_multiple.php">Upload billeder</a></li> -->
-    <li><a href="<?php e(url('sizes')); ?>"><?php e(__('edit image sizes')); ?></a></li>
+    <li><a href="<?php e(url('sizes')); ?>"><?php e(__('Edit image sizes')); ?></a></li>
     <?php if (count($files) > 0): ?>
-    <li><a href="<?php e(url('batchedit', array('use_stored' => 'true'))); ?>"><?php e(__('batch edit files')); ?></a></li>
+    <li><a href="<?php e(url('batchedit', array('use_stored' => 'true'))); ?>"><?php e(__('Batch edit files')); ?></a></li>
     <?php endif; ?>
-    <!--<li><a href="import.php"><?php e(__('import files')); ?></a></li>-->
+    <!--<li><a href="import.php"><?php e(__('Import files')); ?></a></li>-->
 </ul>
 
 
 <?php if (!empty($this->GET['delete']) AND is_numeric($this->GET['delete'])): ?>
-    <p class="message"><?php e(__('file has been deleted')); ?>. <a href="<?php e(url('./', array('undelete' => (int)$this->GET['delete']))); ?>">Fortryd</a></p>
+    <p class="message"><?php e(__('File has been deleted')); ?>. <a href="<?php e(url('./', array('undelete' => (int)$this->GET['delete']))); ?>"><?php e(__('Cancel')); ?></a></p>
 <?php endif; ?>
 
 
 <?php if (count($files) == 0): ?>
-    <p><?php e(__('no files uploaded')); ?></p>
+    <p><?php e(__('No files uploaded')); ?></p>
 <?php else: ?>
 
 
 <form method="get" action="<?php e(url('./')); ?>">
     <fieldset>
-        <legend><?php e(__('search')); ?></legend>
-        <label><?php e(__('search text')); ?>:
+        <legend><?php e(__('Search')); ?></legend>
+        <label><?php e(__('Search text')); ?>:
             <input type="text" name="text" value="<?php e($filemanager->getDBQuery()->getFilter("text")); ?>" />
         </label>
-        <label><?php e(__('search filter')); ?>:
+        <label><?php e(__('Search filter')); ?>:
         <select name="filtration">
             <option value="0"><?php e(__('all', 'filehandler')); ?></option>
             <option value="1"<?php if ($filemanager->getDBQuery()->getFilter("filtration") == 1) e(' selected="selected"');?>><?php e(__('uploaded today', 'filehandler')); ?></option>
@@ -41,19 +41,19 @@
         </select>
         </label>
         <span>
-        <input type="submit" name="search" value="<?php e(__('search')); ?>" />
+        <input type="submit" name="search" value="<?php e(__('Search')); ?>" />
         </span>
 
         <?php
 
         $selected_keywords = $filemanager->getDBQuery()->getKeyword();
 
-    $keyword = $filemanager->getKeywordAppender();
-    $keywords = $keyword->getUsedKeywords();
+    $appender = $filemanager->getKeywordAppender();
+    $keywords = $appender->getUsedKeywords();
 
     if(count($keywords) > 0) {
         echo '<div>'. e(__('keywords', 'keyword')) . ': <ul style="display: inline;">';
-        foreach ($keywords AS $value) {
+        foreach ($keywords as $value) {
              if(in_array($value['id'], $selected_keywords) === true) {
                     $checked = 'checked="checked"';
                 }

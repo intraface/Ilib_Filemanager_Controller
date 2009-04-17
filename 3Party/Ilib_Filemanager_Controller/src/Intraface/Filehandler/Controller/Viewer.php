@@ -1,5 +1,5 @@
 <?php
-class Intraface_Filehandler_Controller_Viewer extends k_Component
+class Intraface_Filehandler_Controller_Viewer extends k_Controller
 {
     function GET()
     {
