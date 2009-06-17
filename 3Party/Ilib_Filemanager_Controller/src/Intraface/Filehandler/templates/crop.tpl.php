@@ -2,9 +2,9 @@
 
 <ul class="options" style="clear:both;">
     <?php if($type['resize_type'] != 'strict' && $unlock_ratio == 1): ?>
-        <li><a href="<?php e($this->url(null, array('instance_type' => $filemanager->instance->get('type'), 'unlock_ratio' => 1))); ?>"><?php e(__('Unlock image ratio')); ?></a></li>
-    <?php elseif($type['resize_type'] != 'strict'): ?>
         <li><a href="<?php e($this->url(null, array('instance_type' => $filemanager->instance->get('type'), 'unlock_ratio' => 0))); ?>"><?php e(__('Lock image ratio')); ?></a></li>
+    <?php elseif($type['resize_type'] != 'strict'): ?>
+        <li><a href="<?php e($this->url(null, array('instance_type' => $filemanager->instance->get('type'), 'unlock_ratio' => 1))); ?>"><?php e(__('Unlock image ratio')); ?></a></li>
     <?php endif; ?>
 
 </ul>
