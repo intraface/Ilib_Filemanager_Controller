@@ -226,7 +226,7 @@ class Intraface_Filehandler_Controller_SelectFile extends k_Controller
 
         $filemanager->getDBQuery()->defineCharacter('character', 'file_handler.file_name');
         $filemanager->getDBQuery()->usePaging("paging", $kernel->setting->get('user', 'rows_pr_page'));
-        $filemanager->getDBQuery()->storeResult("use_stored", "filemanager", "sublevel");
+        $filemanager->getDBQuery()->storeResult("use_stored", "filemanager_select", "sublevel");
         $filemanager->getDBQuery()->setUri($this->url());
 
         $files = $filemanager->getList();
