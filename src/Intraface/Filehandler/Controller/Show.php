@@ -28,18 +28,23 @@ class Intraface_Filehandler_Controller_Show extends k_Controller
         return $gateway->getFromId($this->name);
     }
 
-    function map($name)
+    function forward($name)
     {
         if ($name == 'edit') {
-            return 'Intraface_Filehandler_Controller_Edit';
+            $next = new Intraface_Filehandler_Controller_Edit($this, $name);
+            return $next->handleRequest();
         } elseif ($name == 'crop') {
-            return 'Intraface_Filehandler_Controller_Crop';
+            $next = new Intraface_Filehandler_Controller_Crop($this, $name);
+            return $next->handleRequest();
         } elseif ($name == 'undelete') {
-            return 'Intraface_Filehandler_Controller_Undelete';
+            $next = new Intraface_Filehandler_Controller_Undelete($this, $name);
+            return $next->handleRequest();
         } elseif ($name == 'delete') {
-            return 'Intraface_Filehandler_Controller_Delete';
+            $next = new Intraface_Filehandler_Controller_Delete($this, $name);
+            return $next->handleRequest();
         } elseif ($name == 'keyword') {
-            return 'Intraface_Keyword_Controller_Index';
+            $next = new Intraface_Keyword_Controller_Index($this, $name);
+            return $next->handleRequest();
         }
     }
 }

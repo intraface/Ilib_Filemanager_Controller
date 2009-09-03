@@ -10,7 +10,8 @@
 <?php
 
 foreach ($files as $file) {
-    $this_filemanager = new Ilib_Filehandler_Manager($kernel, $file['id']);
+    $gateway = new Ilib_Filehandler_Gateway($kernel);
+    $this_filemanager = $gateway->getFromId($file['id']);
     if ($this_filemanager->get('is_picture')) {
 
     }

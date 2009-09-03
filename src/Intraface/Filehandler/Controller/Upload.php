@@ -9,7 +9,7 @@ class Intraface_Filehandler_Controller_Upload extends k_Controller
 
         $filemanager = new Ilib_Filehandler($kernel);
 
-        $this->document->title = $this->__('upload file');
+        $this->document->title = $this->__('Upload file');
 
         $data = array('filemanager' => $filemanager, 'redirect' => $redirect);
 

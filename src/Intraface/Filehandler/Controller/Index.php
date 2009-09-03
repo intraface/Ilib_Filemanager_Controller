@@ -88,7 +88,13 @@ class Intraface_Filehandler_Controller_Index extends k_Controller
         if ($name == 'batchedit') {
             $next = new Intraface_Filehandler_Controller_Batchedit($this, $name);
             return $next->handleRequest();
-        } elseif ($name == 'uploadmultiple' OR $name == 'upload') {
+        } elseif ($name == 'uploadmultiple') {
+            $next = new Intraface_Filehandler_Controller_UploadMultiple($this, $name);
+            return $next->handleRequest();
+        } elseif ($name == 'uploadscript') {
+            $next = new Intraface_Filehandler_Controller_UploadScript($this, $name);
+            return $next->handleRequest();
+        } elseif ($name == 'upload') {
             $next = new Intraface_Filehandler_Controller_Upload($this, $name);
             return $next->handleRequest();
         } elseif ($name == 'sizes') {
