@@ -16,7 +16,7 @@ class Intraface_Filehandler_Controller_Batchedit extends k_Controller
                 ))) {
 
                 $appender = $filemanager->getKeywordAppender();
-                $string_appender = new Intraface_Keyword_StringAppender($filemanager->getKeywords(), $appender);
+                $string_appender = new Intraface_Keyword_StringAppender($filemanager->getKeyword(), $appender);
                 $string_appender->addKeywordsByString($this->POST['keywords'][$key]);
             }
             $filemanager->error->view();

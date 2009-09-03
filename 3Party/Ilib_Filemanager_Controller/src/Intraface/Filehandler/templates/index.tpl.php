@@ -16,7 +16,7 @@
 <?php endif; ?>
 
 
-<?php if (count($files) == 0): ?>
+<?php if (empty($files) and (empty($this->GET['search']))): ?>
     <p><?php e(__('No files uploaded')); ?></p>
 <?php else: ?>
 
