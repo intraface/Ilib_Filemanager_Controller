@@ -21,10 +21,13 @@ class Intraface_Filehandler_Controller_Edit extends k_Controller
 
         $filemanager = $gateway->getFromId(intval($this->context->name));
 
-        $filemanager->createUpload();
-        $filemanager->upload->setSetting('max_file_size', '1000000');
-        if ($filemanager->upload->isUploadFile('replace_file')) { //
-            $upload_result = $filemanager->upload->upload('replace_file');
+        $uploader = $filemanager->getUploader();
+        $uploader->setSetting('max_file_size', '1000000');
+        if ($uploader->isUploadFile('replace_file')) { //
+            $upload_result = $uploader->upload('replace_file');
+        } elseif('' != ($message = $uploader->getUploadFileErrorMessage('replace_file'))) {
+            $upload_result = false;
+            $filemanager->error->set($message);
         } else {
             $upload_result = true;
         }
@@ -36,7 +39,7 @@ class Intraface_Filehandler_Controller_Edit extends k_Controller
         $data = array('filemanager' => $filemanager,
                       'values' => $this->POST->getArrayCopy());
 
-        return $this->render(dirname(__FILE__) . '/../edit.tpl.php', $data);
+        return $this->render(dirname(__FILE__) . '/../templates/edit.tpl.php', $data);
 
     }
 }
