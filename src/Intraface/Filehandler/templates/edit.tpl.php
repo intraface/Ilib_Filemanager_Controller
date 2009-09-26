@@ -1,6 +1,6 @@
 <h1><?php e(__('edit file')); ?></h1>
 
-<?php $filemanager->error->view(); ?>
+<?php echo $filemanager->error->view(); ?>
 
 <form action="<?php e(url('./')); ?>" method="POST" enctype="multipart/form-data">
 <fieldset>
@@ -32,8 +32,7 @@
 </fieldset>
 
 <p></p><input type="submit" class="save" name="submit" value="<?php e(__('save', 'common')); ?>" />
-<a href="<?php e(url('../')); ?>"><?php e(__('Cancel', 'common')); ?></a>
-</p>
-</p><input type="hidden" name="id" value="<?php e($filemanager->get("id")); ?>" />
+<a href="<?php e(url('../')); ?>"><?php e(__('Cancel', 'common')); ?></a></p>
+<input type="hidden" name="id" value="<?php e($filemanager->get("id")); ?>" />
 
 </form>
