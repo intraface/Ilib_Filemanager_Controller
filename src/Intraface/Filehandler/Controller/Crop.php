@@ -51,11 +51,11 @@ class Intraface_Filehandler_Controller_Crop extends k_Controller
         $size_ratio = str_replace(',', '.', $size_ratio);
 
         $this->document->title = $this->__('Crop image') . ': ' . $filemanager->get('file_name');
-        $this->document->scripts[] = $this->url('/scripts/cropper/lib/prototype.js');
+        $this->document->scripts[] = $this->url('/javascript/cropper/lib/prototype.js');
         // @todo HACK only way I can get the link to be correct with a comma
-        $this->document->scripts[] = $this->url('/scripts/cropper/lib/scriptaculous.js') . '?load=builder,dragdrop';
-        $this->document->scripts[] = $this->url('/scripts/cropper/cropper.js');
-        $this->document->scripts[] = $this->url('/scripts/crop_image.js.php',
+        $this->document->scripts[] = $this->url('/javascript/cropper/lib/scriptaculous.js') . '?load=builder,dragdrop';
+        $this->document->scripts[] = $this->url('/javascript/cropper/cropper.js');
+        $this->document->scripts[] = $this->url('/javascript/crop_image.js.php',
             array(
                   'size_ratio' => $size_ratio,
                   'max_width' => round($editor_min_width),
