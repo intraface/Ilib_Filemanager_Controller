@@ -13,7 +13,7 @@
 
 <form action="<?php e(url(null)); ?>" method="post">
     <fieldset>
-        <legend><?php e(_('Uploaded files')); ?></legend>
+        <legend><?php e(__('Uploaded files')); ?></legend>
         <div id="images"></div>
     </fieldset>
 
